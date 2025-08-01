@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Slides with Music</title>
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  iframe {
+    border: none;
+    width: 960px;
+    height: 569px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  }
+  #play-music-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Google Slides iframe embed -->
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQSOCFizWZxtf8DBsgFN9za4GQbkBV-qCzIEQCAzGpv6wWLZuXiLh7VIOow9QuntJY8IUK7o2vvyiHK/embed?start=true&loop=false&delayms=5000" allowfullscreen></iframe>
+
+<!-- Audio player -->
+<audio id="bg-music" src="https://audio.jukehost.co.uk/QiLQHDvU69bmJDI5VkKnQAvWvaaXpdl4" loop></audio>
+
+<!-- Button to manually start music if autoplay blocked -->
+<button id="play-music-btn">Click to Play Music</button>
+
+<script>
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('play-music-btn');
+
+  // Try to autoplay audio
+  audio.volume = 0.5;
+  audio.play().catch(() => {
+    // If autoplay blocked, show button to start audio manually
+    btn.style.display = 'inline-block';
+  });
+
+  btn.addEventListener('click', () => {
+    audio.play();
+    btn.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
